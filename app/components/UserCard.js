@@ -1,23 +1,27 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+
+import UserHeader from '../components/UserHeader';
+import UserContent from '../components/UserContent';
+import { Link } from 'react-router';
+
+var componentStyle = {
+  backgroundColor: '#fafafa',
+  width: '30%',
+  height: '20%',
+  overflow: 'hidden',
+  boxShadow: '.25px .25px 5px .25px',
+  borderRadius: '2px 2px 2px 2px',
+  zIndex: 5
+};
 
 const UserCard = ({ user }) => (
-  <ul>
-    <li>Name: {user.name}</li>
-    <li>Username: {user.username}</li>
-    <li>Email: {user.email}</li>
-    <li>Phone: {user.phone}</li>
-    <li>Website: {user.website}</li>
-  </ul>
+  <div>
+    <Link to={`/`}><h3>&lt; back</h3></Link>
+    <div style={componentStyle}>
+      <UserHeader user={user}/>
+      <UserContent user={user}/>
+    </div>
+  </div>
 );
-
-UserCard.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    website: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 export default UserCard;

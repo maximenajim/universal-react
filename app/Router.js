@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
-import Helmet from 'react-helmet';
 import { Provider } from 'react-redux';
 import routes from './Routes';
 import Root from './containers/Root';
@@ -29,10 +28,9 @@ function renderComponentWithRoot(Component, componentProps, store) {
     </Provider>,
   );
 
-  const head = Helmet.rewind();
   const initialState = store.getState();
   const rootMarkup = renderToStaticMarkup(
-    <Root content={componentHtml} initialState={initialState} head={head} />,
+    <Root content={componentHtml} initialState={initialState} />,
   );
 
   return `<!doctype html>\n${rootMarkup}`;
@@ -51,6 +49,7 @@ function routeIsUnmatched(renderProps) {
 }
 
 function handleRoute(res, renderProps) {
+  console.log("renderProps", renderProps);
   const store = configureStore();
   const status = routeIsUnmatched(renderProps) ? 404 : 200;
   const readyOnAllActions = renderProps.components

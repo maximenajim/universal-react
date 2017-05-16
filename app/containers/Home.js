@@ -1,5 +1,4 @@
-import React, { PropTypes, PureComponent } from 'react';
-import Helmet from 'react-helmet';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as UsersActions from '../actions/users';
 import UserList from '../components/UserList';
@@ -34,20 +33,11 @@ class Home extends PureComponent {
   render() {
     return (
       <div>
-        <Helmet title="Home" />
         {this.renderUsers()}
       </div>
     );
   }
 }
-
-Home.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  users: PropTypes.shape({
-    readyState: PropTypes.string.isRequired,
-    list: PropTypes.array.isRequired,
-  }).isRequired,
-};
 
 const mapStateToProps = ({ users }) => ({
   users,

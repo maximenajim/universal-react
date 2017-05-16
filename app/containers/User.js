@@ -1,5 +1,4 @@
-import React, { PropTypes, PureComponent } from 'react';
-import Helmet from 'react-helmet';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as UserActions from '../actions/user';
 import UserCard from '../components/UserCard';
@@ -37,29 +36,11 @@ class User extends PureComponent {
   render() {
     return (
       <div>
-        <Helmet
-          title={this.getUser().name || ''}
-          meta={[
-            { name: 'description', content: 'User Profile' },
-          ]}
-        />
         {this.renderUser()}
       </div>
     );
   }
 }
-
-User.defaultProps = {
-  user: null,
-};
-
-User.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  params: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  user: PropTypes.shape({}),
-};
 
 const mapStateToProps = ({ user }) => ({
   user,
