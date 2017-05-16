@@ -1,5 +1,7 @@
 # Build
-build
+dist
 
 # Dependency directories
 node_modules
+
+.DS_Store

@@ -18,7 +18,7 @@ var imageStyle =  {
   padding: '0% 4% 0% 4%'
 };
 
-var defaultImageSrc = 'https://cdn.pixabay.com/photo/2016/03/31/17/33/account-1293744_960_720.png';
+var defaultImageSrc = '/user-default-image.png';
 
 const UserHeader = ({ user }) => (
   <div style={headerStyle}>
