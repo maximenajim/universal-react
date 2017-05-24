@@ -1,11 +1,11 @@
 /* global window, document */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { renderToStaticMarkup } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup} from 'react-dom/server';
 import { Router, match, RouterContext, browserHistory } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './Routes';
-import Root from './containers/Root';
+import Template from './containers/Template';
 import configureStore from './configureStore';
 
 const isClient = typeof document !== 'undefined';
@@ -17,23 +17,23 @@ if (isClient) {
     <Provider store={store}>
       <Router history={browserHistory}>{routes}</Router>
     </Provider>,
-    document.getElementById('root'),
+    document.getElementById('content'),
   );
 }
 
-function renderComponentWithRoot(Component, componentProps, store) {
-  const componentHtml = renderToStaticMarkup(
+function renderComponentWithRoot(RouterContext, componentProps, store) {
+  const componentHtml = renderToString(
     <Provider store={store}>
-      <Component {...componentProps} />
+      <RouterContext {...componentProps} />
     </Provider>,
   );
 
   const initialState = store.getState();
-  const rootMarkup = renderToStaticMarkup(
-    <Root content={componentHtml} initialState={initialState} />,
+  const templateMarkup = renderToStaticMarkup(
+    <Template content={componentHtml} initialState={initialState} />,
   );
 
-  return `<!doctype html>\n${rootMarkup}`;
+  return `<!doctype html>\n${templateMarkup}`;
 }
 
 function handleError(res, error) {

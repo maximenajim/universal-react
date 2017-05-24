@@ -27,7 +27,11 @@ class Home extends PureComponent {
       return <p>Failed to fetch users</p>;
     }
 
-    return <UserList users={users.list} />;
+    if (users.readyState === UsersActions.USERS_FETCHED) {
+      return <UserList users={users.list} />;
+    }
+
+     return null;
   }
 
   render() {

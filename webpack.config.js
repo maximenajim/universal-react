@@ -5,7 +5,7 @@ module.exports = {
   devtool: '#source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './app/index.js',
+    './client/index.js',
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -21,7 +21,7 @@ module.exports = {
     loaders: [{
       test: /\.js?$/,
       loader: 'babel-loader',
-      include: path.join(__dirname, 'app'),
+      include: path.join(__dirname, 'client'),
       query: {
         plugins: [
           ['react-transform', {

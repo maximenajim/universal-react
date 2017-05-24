@@ -12,15 +12,14 @@ function renderEnvironment() {
   return <script dangerouslySetInnerHTML={{ __html: innerHtml }} />;
 }
 
-const Root = ({ content, head, initialState }) => (
+const Template = ({ content, head, initialState }) => (
   <html lang="en">
     <body>
-      <div id="root" dangerouslySetInnerHTML={{ __html: content }} />
-      {renderEnvironment()}
+      <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
       {initialState && renderInitialState(initialState)}
       <script src={!process.env.NODE_ENV ? '/app.js' : '/app.min.js'} />
     </body>
   </html>
 );
 
-export default Root;
+export default Template;

@@ -30,7 +30,11 @@ class User extends PureComponent {
       return <p>Failed to fetch user</p>;
     }
 
-    return <UserCard user={user.info} />;
+    if (user.readyState === UserActions.USER_FETCHED) {
+      return <UserCard user={user.info} />;
+    }
+
+    return null;
   }
 
   render() {
